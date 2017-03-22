@@ -12,7 +12,9 @@
  *      Tibor Szász - https://github.com/kowdermeister
  *      László Sotus - https://github.com/Lacisan
  *
- *  Licensed under the Apache License, Version 2.0
+ *  Under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 License
+ *  To view a copy of this license, visit
+ *  http://creativecommons.org/licenses/by-nc-sa/4.0/deed.en_US.
  */
 
 var CSSGradientEditor = function(container, options) {
@@ -57,6 +59,7 @@ var CSSGradientEditor = function(container, options) {
       qrcode,
       qrupdatetimeout,
       cssoutput = '',
+      svgdataoutput = '',
       gradientready = false,
       layout,
       checkiflayoutcanchange = false,
@@ -2423,7 +2426,7 @@ var CSSGradientEditor = function(container, options) {
     currentgradient = getGradientQueryString();
 
     elements.permalink.attr('href', window.location.pathname + '?' + currentgradient).data('querystring', currentgradient);
-    elements.imagegradient.attr('href', 'gradient.php?' + currentgradient);
+    //elements.imagegradient.attr('href', 'gradient.php?' + currentgradient);
 
     if (typeof window.history.pushState === 'function') {
       window.history.replaceState({}, '', window.location.pathname + '?' + currentgradient);
@@ -3483,6 +3486,9 @@ var CSSGradientEditor = function(container, options) {
         if (getConfig('config_generation_iefilter')) {
           cssoutput = cssoutput + css.filter;
         }
+
+		/*save svg data*/
+		svgdataoutput = gradientdata.svg;
       }
       else {
         if (visiblecount > 0) {
@@ -3518,6 +3524,8 @@ var CSSGradientEditor = function(container, options) {
     brush.init({toolbar: false, gutter: false});
     elements.cssoutput.html(brush.getHtml(cssoutput));
     elements.cssoutput.data('output', cssoutput);
+
+	return cssoutput;
   }
 
   function renderLastColor(targetelement, dataset) {
@@ -4254,4 +4262,14 @@ var CSSGradientEditor = function(container, options) {
 
     setupLayout();
   }
+
+	function getSVGData () {
+		return svgdataoutput;
+	}
+
+	return {
+		getGradientQueryString: getGradientQueryString,
+		updateCssOutput: updateCssOutput,
+		getSVGData: getSVGData
+	};
 };

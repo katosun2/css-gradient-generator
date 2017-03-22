@@ -17,7 +17,7 @@
  *  http://creativecommons.org/licenses/by-nc-sa/4.0/deed.en_US.
  */
 
-@import url('http://fonts.googleapis.com/css?family=Droid+Sans|Monda');
+@import url('../resources/family.css');
 
 @media (min-width: 768px) {
   .container {
@@ -1089,4 +1089,12 @@ css-gradient-editor-container.layout-simple .hide-element {
 .layout-warning-advanced,
 .layout-warning-expert {
   display: none;
+}
+
+.hide-canvas{
+	width:0;
+	height:0;
+	overflow:hidden;
+	display:block;
+	display:none;
 }

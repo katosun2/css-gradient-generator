@@ -23,6 +23,7 @@
     "grunt-contrib-cssmin": "~0.9.0"
   },
   "scripts": {
-    "test": "grunt travis --verbose"
+    "test": "grunt travis --verbose",
+    "build": "grunt"
   }
 }
